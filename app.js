@@ -14,11 +14,12 @@ mongoose.connect(`mongodb+srv://isolerfacundo:${process.env.MONGO_DB_PASS}@devel
     })
     .catch((err) => console.log(err))
 
+    app.use(express.json());
 
-// app.get('/', (req, res, next) => {
-//     console.log('Petición recibida')
-//     next()
-// })
+
+app.post('/api/v1/products', (req, res) => {
+    res.status(200).json({ ok: true })
+})
 
 app.use(express.static(path.join(__dirname, 'public')))
 
