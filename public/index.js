@@ -1,5 +1,5 @@
-const inputName = document.querySelector('productName');
-const inputPrice = document.querySelector('productPrice');
+const inputName = document.querySelector('#productName');
+const inputPrice = document.querySelector('#productPrice');
 
 const button = document.querySelector('button');
 
@@ -13,9 +13,11 @@ button.addEventListener('click', (e) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(req.body)
+        body: JSON.stringify({
+            name,
+            price
+        }),
     })
 })
 
 
-console.log(h1)
