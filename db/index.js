@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const dbConnect = (app) => {
     // Conecta la base de datos MongoDB utilizando la URL proporcionada en las variables de entorno
-    mongoose.connect(`mongodb+srv://isolerfacundo:${process.env.MONGO_DB_PASS}@development.l4tfmp0.mongodb.net/?retryWrites=true&w=majority`)
+    mongoose.connect(`mongodb+srv://isolerfacundo:${process.env.MONGO_DB_PASS}@development.l4tfmp0.mongodb.net/stock-app?retryWrites=true&w=majority`)
         .then(result => {
             // Puerto en el que se ejecutará el servidor, obtenido de las variables de entorno
             const PORT = process.env.PORT;
