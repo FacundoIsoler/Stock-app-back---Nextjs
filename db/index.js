@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+const Product = require('../models/product.js')
+
+
 
 const dbConnect = (app) => {
     // Conecta la base de datos MongoDB utilizando la URL proporcionada en las variables de entorno

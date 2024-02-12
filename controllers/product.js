@@ -1,7 +1,7 @@
 const Product = require('../models/product.js')
 
 const getProducts = async (req, res) => {
-    const products = await Product.find()
+    const products = await Product.find({deleted: false}).sort({ _id: -1 })
     res.status(200).json({ ok: true, products, count: products.length })
 }
 
@@ -18,9 +18,9 @@ const createProduct = (req, res) => {
     const newProduct = new Product(req.body);
     // Guarda el nuevo producto en la base de datos
     newProduct.save()
-        .then((result) => {
+        .then((product) => {
             // Si se guarda correctamente, responde con un código de estado 201 (Created) y un objeto de respuesta exitosa
-            res.status(201).json({ ok: true });
+            res.status(201).json({ ok: true, product });
         })
         .catch((err) => {
             // Si hay un error al guardar, responde con un código de estado 500 (Internal Server Error)
@@ -28,4 +28,12 @@ const createProduct = (req, res) => {
         });
 }
 
-module.exports = { getProducts, createProduct }
+const deleteProduct = async (req, res) => {
+    const { id } = req.params
+    await Product.findByIdAndUpdate(id, {
+        deleted: true
+    })
+    res.status(200).json({ ok: true, message: 'Producto eliminado' })
+}
+
+module.exports = { getProducts, createProduct, deleteProduct }
