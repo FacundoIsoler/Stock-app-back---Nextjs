@@ -43,7 +43,7 @@ const getProducts = async (req, res) => {
             },
         },
         {
-            $sort: { stock: -1 },
+            $sort: { name: 1 },
         },
     ])
     res.status(200).json({ ok: true, products, count: products.length })
